@@ -5,6 +5,7 @@ $(document).ready(async function() {
        wifi: `./wifi.json`,
     }
     let response = await $.get(api.wifi);
+	console.log(response);
 	console.log(`response: {response.text}`);
 	console.log(JSON.parse(response.text));
 });
