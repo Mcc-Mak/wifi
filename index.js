@@ -1,5 +1,5 @@
 async function getAjax(i_url = "") {
-	return await $.ajax(i_url, {dataType: "text"}).then;
+	return await $.ajax(i_url, {dataType: "text"});
 }
 
 $(document).ready(async function() {
@@ -18,10 +18,7 @@ $(document).ready(async function() {
 	].forEach(async (category) => {
 		let i_url = api.wifi[category];
 		const response = await getAjax(i_url);
-		console.log(i_url);
-		console.log(response);
 		var tabledata = JSON.parse(response.trim());
-		console.log(tabledata);
 		var table = new Tabulator("#wifi_" + category, {
 			data: JSON.parse(response.trim()),	//assign data to table
 			autoColumns: true,					//create columns from data field names
