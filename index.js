@@ -18,6 +18,7 @@ $(document).ready(async function() {
 	].forEach(async (category) => {
 		let i_url = api.wifi[category];
 		const response = await getAjax(i_url);
+		console.log(i_url);
 		console.log(response);
 		var tabledata = JSON.parse(response.trim());
 		console.log(tabledata);
