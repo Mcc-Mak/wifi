@@ -15,6 +15,6 @@ $(document).ready(async function() {
 		data: JSON.parse(response.trim()), //assign data to table
 		autoColumns: true, //create columns from data field names
 		pagination: "local",
-		paginationSize: 30,
+		paginationSize: 25,
 	});
 });
