@@ -7,8 +7,8 @@ $(document).ready(async function() {
 
 	let api = {
 		wifi: {
-			fixed: `fixed-wi-fi-hk-locations.json`,
-			non_fixed: `non-fixed-wi-fi-hk-locations.json`,
+			fixed: `https://www.ogcio.gov.hk/en/our_work/community/common_wifi_branding/fixed-wi-fi-hk-locations.json`,
+			non_fixed: `https://www.ogcio.gov.hk/en/our_work/community/common_wifi_branding/non-fixed-wi-fi-hk-locations.json`,
 		}
 	};
 
@@ -17,9 +17,7 @@ $(document).ready(async function() {
 		"non_fixed"
 	].forEach(async (category) => {
 		let i_url = api.wifi[category];
-		console.log(i_url);
 		const response = await getAjax(i_url);	
-		console.log(response.slice(0,40));
 		//define data array
 		var tabledata = JSON.parse(response.trim());
 		// console.log(tabledata);
