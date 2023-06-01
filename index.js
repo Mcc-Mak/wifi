@@ -16,5 +16,6 @@ $(document).ready(async function() {
 		autoColumns: true, //create columns from data field names
 		pagination: "local",
 		paginationSize: 25,
+		paginationCounter:"rows",
 	});
 });
