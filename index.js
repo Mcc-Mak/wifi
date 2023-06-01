@@ -1,5 +1,5 @@
 async function getAjax(i_url = "") {
-	return await $.ajax(i_url);
+	return await $.ajax(i_url, {dataType: "text"});
 }
 
 $(document).ready(async function() {
