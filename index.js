@@ -8,7 +8,7 @@ $(document).ready(async function() {
 	const response = await getAjax(`./fixed-wi-fi-hk-locations.json`);	
 	//define data array
 	var tabledata = JSON.parse(response.trim());
-	console.log(tabledata);
+	// console.log(tabledata);
 
 	//initialize table
 	var table = new Tabulator("#example-table", {
