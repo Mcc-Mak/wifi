@@ -23,7 +23,7 @@ $(document).ready(async function() {
 		// console.log(tabledata);
 
 		//initialize table
-		var table = new Tabulator(`wifi_{i_url}`, {
+		var table = new Tabulator(`#wifi_{category}`, {
 			data: JSON.parse(response.trim()), //assign data to table
 			autoColumns: true, //create columns from data field names
 			pagination: "local",
