@@ -11,7 +11,6 @@ $(document).ready(async function() {
 			non_fixed: `./non-fixed-wi-fi-hk-locations.json`,
 		}
 	};
-
 	[
 		"fixed",
 		"non_fixed"
