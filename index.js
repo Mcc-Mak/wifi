@@ -16,16 +16,16 @@ $(document).ready(async function() {
 		"fixed",
 		"non_fixed"
 	].forEach(async (category) => {
-		console.log("#wifi_" + category);
-		
 		let i_url = api.wifi[category];
+		console.log(i_url);
 		const response = await getAjax(i_url);	
+		console.log(response.slice(0,40));
 		//define data array
 		var tabledata = JSON.parse(response.trim());
 		// console.log(tabledata);
 
 		//initialize table
-		var table = new Tabulator(`#wifi_{category}`, {
+		var table = new Tabulator("#wifi_" + category, {
 			data: JSON.parse(response.trim()), //assign data to table
 			autoColumns: true, //create columns from data field names
 			pagination: "local",
