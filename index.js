@@ -16,7 +16,7 @@ $(document).ready(async function() {
 		"fixed",
 		"non_fixed"
 	].forEach(async (category) => {
-		console.log(`#wifi_{category}`);
+		console.log("#wifi_" + category);
 		
 		let i_url = api.wifi[category];
 		const response = await getAjax(i_url);	
