@@ -7,8 +7,8 @@ $(document).ready(async function() {
 
 	let api = {
 		wifi: {
-			fixed: `https://www.ogcio.gov.hk/en/our_work/community/common_wifi_branding/fixed-wi-fi-hk-locations.json`,
-			non_fixed: `https://www.ogcio.gov.hk/en/our_work/community/common_wifi_branding/non-fixed-wi-fi-hk-locations.json`,
+			fixed: `./fixed-wi-fi-hk-locations.json`,
+			non_fixed: `./non-fixed-wi-fi-hk-locations.json`,
 		}
 	};
 
@@ -17,15 +17,12 @@ $(document).ready(async function() {
 		"non_fixed"
 	].forEach(async (category) => {
 		let i_url = api.wifi[category];
-		const response = await getAjax(i_url);	
-		//define data array
+		const response = await getAjax(i_url);
 		var tabledata = JSON.parse(response.trim());
 		// console.log(tabledata);
-
-		//initialize table
 		var table = new Tabulator("#wifi_" + category, {
-			data: JSON.parse(response.trim()), //assign data to table
-			autoColumns: true, //create columns from data field names
+			data: JSON.parse(response.trim()),	//assign data to table
+			autoColumns: true,					//create columns from data field names
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
