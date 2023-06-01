@@ -13,6 +13,8 @@ $(document).ready(async function() {
 	//initialize table
 	var table = new Tabulator("#example-table", {
 		data: JSON.parse(response.trim()), //assign data to table
-		autoColumns:true, //create columns from data field names
+		autoColumns: true, //create columns from data field names
+		pagination: "local",
+		paginationSize: 30,
 	});
 });
