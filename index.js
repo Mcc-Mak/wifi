@@ -1,5 +1,5 @@
 async function getAjax(i_url = "") {
-	return await $.ajax(i_url, {dataType: "text"});
+	return await $.ajax(i_url, {dataType: "text"}).then;
 }
 
 $(document).ready(async function() {
@@ -10,11 +10,13 @@ $(document).ready(async function() {
 			fixed: `fixed-wi-fi-hk-locations.json`,
 			non_fixed: `non-fixed-wi-fi-hk-locations.json`,
 		}
-	}
+	};
+
+	console.log(`#wifi_{category}`);
 
 	[
 		"fixed",
-		"non_fixed",
+		"non_fixed"
 	].forEach(async (category) => {
 		let i_url = api.wifi[category];
 		const response = await getAjax(i_url);	
