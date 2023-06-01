@@ -5,17 +5,30 @@ async function getAjax(i_url = "") {
 $(document).ready(async function() {
     console.log(`[index.js] init...`);
 
-	const response = await getAjax(`./fixed-wi-fi-hk-locations.json`);	
-	//define data array
-	var tabledata = JSON.parse(response.trim());
-	// console.log(tabledata);
+	let api = {
+		wifi: {
+			fixed: `fixed-wi-fi-hk-locations.json`,
+			non_fixed: `non-fixed-wi-fi-hk-locations.json`,
+		}
+	}
 
-	//initialize table
-	var table = new Tabulator("#example-table", {
-		data: JSON.parse(response.trim()), //assign data to table
-		autoColumns: true, //create columns from data field names
-		pagination: "local",
-		paginationSize: 25,
-		paginationCounter:"rows",
+	[
+		"fixed",
+		"non_fixed",
+	].forEach(async (category) => {
+		let i_url = api.wifi[category];
+		const response = await getAjax(i_url);	
+		//define data array
+		var tabledata = JSON.parse(response.trim());
+		// console.log(tabledata);
+
+		//initialize table
+		var table = new Tabulator(`wifi_{i_url}`, {
+			data: JSON.parse(response.trim()), //assign data to table
+			autoColumns: true, //create columns from data field names
+			pagination: "local",
+			paginationSize: 25,
+			paginationCounter:"rows",
+		});
 	});
 });
