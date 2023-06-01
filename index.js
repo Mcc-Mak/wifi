@@ -13,7 +13,7 @@ $(document).ready(async function() {
 	// console.log(`response: {response.text}`);
 	// console.log(JSON.parse(response.text));
 
-	const r = await getAjax(i_url = `./wifi.json`);
+	const r = await getAjax(`./wifi.json`);
 	console.log(">>> r");
 	console.log(r);
 	console.log(">>> r.responseText");
