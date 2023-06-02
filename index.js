@@ -190,6 +190,7 @@ $(document).ready(async function() {
 				},
 			};			
 			invisible_column_mapper.wifi[`${category}`].forEach(columnName => {
+				console.log(`table.hideColumn("${columnName}");`);
 				table.hideColumn(columnName);
 			});
 		});
