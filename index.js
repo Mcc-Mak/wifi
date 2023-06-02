@@ -22,7 +22,7 @@ $(document).ready(async function() {
 		"fixed",
 		"non_fixed"
 	].forEach(async (category) => {
-		let i_url = api.wifi[category];
+		let i_url = api.wifi[`${category}`];
 		const response = await getAjax(i_url);
 		var data = [];
 		JSON.parse(response.trim()).forEach(row => {
@@ -155,20 +155,37 @@ $(document).ready(async function() {
 			],
 		});
 		table.on("tableBuilt", function(){
-			let invisible_column_list = [
-				'OrganisationCode',
-				'LocationID',
-				'DigitalCertificate',
-				'Latitude',
-				'Longitude',
-				'MoreInformationEN',
-				'MoreInformationTC',
-				'MoreInformationLinkEN',
-				'MoreInformationLinkTC',
-				'RemarksEN',
-				'RemarksTC',
-			];
-			invisible_column_list.forEach(columnName => {
+			let invisible_column_mapper = {
+				wifi: {
+					fixed: [
+						'OrganisationCode',
+						'LocationID',
+						'DigitalCertificate',
+						'Latitude',
+						'Longitude',
+						'MoreInformationEN',
+						'MoreInformationTC',
+						'MoreInformationLinkEN',
+						'MoreInformationLinkTC',
+						'RemarksEN',
+						'RemarksTC',
+					],
+					non_fixed: [
+						'AreaEN',
+						'AreaTC',
+						'DistrictEN',
+						'DistrictTC',
+						'AddressEN',
+						'AddressTC',
+						'Latitude',
+						'Longitude',
+						'VenueTypeEN',
+						'VenueTypeTC',
+					],
+				},
+			};
+			
+			invisible_column_list.wifi[`${category}`].forEach(columnName => {
 				table.hideColumn(columnName);
 			});
 		});
