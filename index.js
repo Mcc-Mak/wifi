@@ -37,7 +37,7 @@ $(document).ready(async function() {
 		});
 		
 		// Table
-		var table = new Tabulator(`#wifi_${category}`, {
+		let table = new Tabulator(`#wifi_${category}`, {
 			data: data,			//assign data to table
 			// autoColumns: true,	//create columns from data field names
 			pagination: "local",
@@ -144,14 +144,6 @@ $(document).ready(async function() {
 					"title": "RemarksTC",
 					"field": "RemarksTC"
 				},
-				{
-					"title": "Latitude",
-					"field": "Latitude"
-				},
-				{
-					"title": "Longitude",
-					"field": "Longitude"
-				},
 			],
 		});
 		table.on("tableBuilt", function(){
@@ -190,7 +182,6 @@ $(document).ready(async function() {
 				},
 			};			
 			invisible_column_mapper.wifi[`${category}`].forEach(columnName => {
-				console.log(`table.hideColumn("${columnName}");`);
 				table.hideColumn(columnName);
 			});
 		});
