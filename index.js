@@ -172,16 +172,27 @@ $(document).ready(async function() {
 				table.hideColumn(columnName);
 			});
 		});
-		
-		// Map
-		data.forEach(dt => {
+		table.on("cellClick", function(e, cell) {
+			// Map
+			let rowData = cell.getData();
 			let lat_lng = [
-				parseFloat(dt.Latitude),
-				parseFloat(dt.Longitude)
+				parseFloat(rowData.Latitude),
+				parseFloat(rowData.Longitude)
 			];
 			var marker = L.marker(lat_lng);
 			marker.addTo(map);
+			map.setView(lat_lng);
 		});
+		
+		// Map
+		// data.forEach(dt => {
+			// let lat_lng = [
+				// parseFloat(dt.Latitude),
+				// parseFloat(dt.Longitude)
+			// ];
+			// var marker = L.marker(lat_lng);
+			// marker.addTo(map);
+		// });
 	});
 	
 	// Modified datetime
