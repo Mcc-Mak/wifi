@@ -226,7 +226,7 @@ $(document).ready(async function() {
 					.html('Show')
 					.removeClass('btn-secondary')
 					.addClass('btn-success') &&
-				$("#wifi_non_fixed_title").parent().css({"padding-top": "50px"}) &&
+				// $("#wifi_non_fixed_title").parent().css({"padding-top": "50px"}) &&
 				map.invalidateSize()
 			) : (
 				$('#map').show() &&
@@ -234,7 +234,7 @@ $(document).ready(async function() {
 					.html('Hide')
 					.removeClass('btn-success')
 					.addClass('btn-secondary') &&
-				$("#wifi_non_fixed_title").parent().css({"padding-top": "800px"}) &&
+				// $("#wifi_non_fixed_title").parent().css({"padding-top": "800px"}) &&
 				map.invalidateSize()
 			);
 	});
