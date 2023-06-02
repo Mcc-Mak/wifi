@@ -46,6 +46,8 @@ $(document).ready(async function() {
 		
 		// Map
 		data.forEach(dt => {
+			console.log(dt);
+			break;
 			let lat_lng = [
 				parseFloat(dt.Latitude),
 				parseFloat(dt.Longitude)
@@ -61,5 +63,5 @@ $(document).ready(async function() {
 	
 	// Timestamp
 	const response = await getAjax("./modified_datetime.log");
-	$('#modified_datetime').html(response.trim());
+	$('#modified_datetime').html(`Modified datetime: ${response.trim()}`);
 });
