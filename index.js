@@ -179,10 +179,8 @@ $(document).ready(async function() {
 				parseFloat(dt.Latitude),
 				parseFloat(dt.Longitude)
 			];
-			if(![NaN].includes(NaN)) {
-				var marker = new L.Marker(lat_lng);
-				marker.addTo(map);
-			}
+			var marker = L.marker([lat_lng]);
+			marker.addTo(map);
 		});
 	});
 	
