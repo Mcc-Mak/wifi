@@ -206,16 +206,6 @@ $(document).ready(async function() {
 				
 				map.invalidateSize();
 			});
-			
-			// Map
-			// data.forEach(dt => {
-				// let lat_lng = [
-					// parseFloat(dt.Latitude),
-					// parseFloat(dt.Longitude)
-				// ];
-				// var marker = L.marker(lat_lng);
-				// marker.addTo(map);
-			// });
 		}
 	});
 	
