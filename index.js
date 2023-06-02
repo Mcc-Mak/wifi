@@ -36,6 +36,7 @@ $(document).ready(async function() {
 		// Map
 		data.forEach(dt => {
 			var marker = new L.Marker([dt.Latitude, dt.Longitude]);
+			console.log(`(lat, lng) = (${dt.Latitude}(type=${typeof(dt.Latitude)}), ${dt.Longitude}(type=${typeof(dt.Longitude)}))`);
 			marker.addTo(map);
 		});
 	});
