@@ -22,6 +22,7 @@ $(document).ready(async function() {
 		let i_url = api.wifi[category];
 		const response = await getAjax(i_url);
 		var data = JSON.parse(response.trim());
+		data = Object.fromEntries(Object.entries(data).filter(([key]) => !key.includes('SC')));
 		
 		// Table
 		var table = new Tabulator(`#wifi_${category}`, {
