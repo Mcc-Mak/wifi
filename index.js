@@ -19,8 +19,6 @@ $(document).ready(async function() {
 		const response = await getAjax(i_url);
 		var data = JSON.parse(response.trim());
 		
-		Latitude
-		Longitude
 		// Table
 		var table = new Tabulator("#wifi_" + category, {
 			data: data,	//assign data to table
