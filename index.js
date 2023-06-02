@@ -200,10 +200,16 @@ $(document).ready(async function() {
 				// markers.forEach(marker => {
 					// map.removeLayer(marker);
 				// });
-				markers = []
-				var marker = L.marker(lat_lng);
-				marker.addTo(map);
-				markers.push(marker);
+				// markers = []
+				let is_marked = markers.map(marker => {
+					let ll_m = marker.getLatLng();
+					return [ll_m.lat, ll_m.lng].toString();
+				}).includes(lat_lng.toString());
+				if(!is_marked) {
+					var marker = L.marker(lat_lng);
+					marker.addTo(map);
+					markers.push(marker);
+				}
 				map.setView(lat_lng, 18);
 				
 				map.invalidateSize();
