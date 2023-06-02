@@ -203,11 +203,14 @@ $(document).ready(async function() {
 					// map.removeLayer(marker);
 				// });
 				// markers = []
-				let marked_marker = markers.map(marker => {
+				let marked_marker = markers.filter(marker => {
 					let ll_m = marker.getLatLng();
-					return [ll_m.lat, ll_m.lng].toString() == lat_lng.toString() ? marker : null;
+					return [ll_m.lat, ll_m.lng].toString() == lat_lng.toString();
 				});
+				console.log(marked_marker)
 				if(marked_marker.length > 0) {
+					console.log(">>>")
+					console.log(marked_marker[0])
 					marked_marker.forEach(marker => {
 						map.removeLayer(marker);
 					});
