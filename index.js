@@ -43,8 +43,8 @@ $(document).ready(async function() {
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
-			selectable: 5,
-			selectableRollingSelection: false,
+			selectable: category == "fixed" ? 1 : false,
+			// selectableRollingSelection: false,
 			columns: [
 				{
 					"title": "Latitude",
@@ -194,8 +194,8 @@ $(document).ready(async function() {
 			var markers = [];
 			table.on("cellClick", function(e, cell) {
 				// Table
-				table.getSelectedRows().forEach(row => row.deselect());
-				cell.getRow().select();
+				// table.getSelectedRows().forEach(row => row.deselect());
+				// cell.getRow().select();
 				
 				// Map
 				let rowData = cell.getData();
