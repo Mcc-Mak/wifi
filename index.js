@@ -20,7 +20,7 @@ $(document).ready(async function() {
 		var data = JSON.parse(response.trim());
 		
 		// Table
-		var table = new Tabulator("#wifi_" + category, {
+		var table = new Tabulator(`#wifi_${category}`, {
 			data: data,			//assign data to table
 			autoColumns: true,	//create columns from data field names
 			pagination: "local",
