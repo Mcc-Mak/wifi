@@ -207,10 +207,7 @@ $(document).ready(async function() {
 					let ll_m = marker.getLatLng();
 					return [ll_m.lat, ll_m.lng].toString() == lat_lng.toString();
 				});
-				console.log(marked_marker)
 				if(marked_marker.length > 0) {
-					console.log(">>>")
-					console.log(marked_marker[0])
 					marked_marker.forEach(marker => {
 						map.removeLayer(marker);
 					});
