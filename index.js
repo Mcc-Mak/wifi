@@ -43,6 +43,8 @@ $(document).ready(async function() {
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
+			selectable: 5,
+			selectableRollingSelection: false,
 			columns: [
 				{
 					"title": "Latitude",
@@ -191,6 +193,9 @@ $(document).ready(async function() {
 		if(category == "fixed") {
 			var markers = [];
 			table.on("cellClick", function(e, cell) {
+				// Table
+				table.selectRow(cell.getRow().getIndex());
+				
 				// Map
 				let rowData = cell.getData();
 				let lat_lng = [
