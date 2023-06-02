@@ -26,15 +26,14 @@ $(document).ready(async function() {
 		const response = await getAjax(i_url);
 		var data = [];
 		JSON.parse(response.trim()).forEach(row => {
-			data.push(
-				Object.fromEntries(Object.entries(row).filter(
-					([key]) => {
-						return (
-							!key.includes('SC')
-						)
-					}
-				))
-			);
+			let row_n = Object.fromEntries(Object.entries(row).filter(
+				([key]) => {
+					return (
+						!key.includes('SC')
+					)
+				}
+			));
+			data.push(row_n);
 		});
 		
 		// Table
@@ -44,10 +43,107 @@ $(document).ready(async function() {
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
+			columns: [
+			  {
+				"field": "OrganisationCode"
+			  },
+			  {
+				"field": "LocationID"
+			  },
+			  {
+				"field": "SSID"
+			  },
+			  {
+				"field": "SupportHotline"
+			  },
+			  {
+				"field": "LocationNameEN"
+			  },
+			  {
+				"field": "LocationNameTC"
+			  },
+			  {
+				"field": "AreaEN"
+			  },
+			  {
+				"field": "AreaTC"
+			  },
+			  {
+				"field": "DistrictEN"
+			  },
+			  {
+				"field": "DistrictTC"
+			  },
+			  {
+				"field": "AddressEN"
+			  },
+			  {
+				"field": "AddressTC"
+			  },
+			  {
+				"field": "Latitude"
+			  },
+			  {
+				"field": "Longitude"
+			  },
+			  {
+				"field": "VenueTypeEN"
+			  },
+			  {
+				"field": "VenueTypeTC"
+			  },
+			  {
+				"field": "NumberOfHotspots"
+			  },
+			  {
+				"field": "DigitalCertificate"
+			  },
+			  {
+				"field": "SupportEmail"
+			  },
+			  {
+				"field": "MoreInformationEN"
+			  },
+			  {
+				"field": "MoreInformationTC"
+			  },
+			  {
+				"field": "MoreInformationLinkEN"
+			  },
+			  {
+				"field": "MoreInformationLinkTC"
+			  },
+			  {
+				"field": "RemarksEN"
+			  },
+			  {
+				"field": "RemarksTC"
+			  },
+			  {
+				"field": "Latitude"
+			  },
+			  {
+				"field": "Longitude"
+			  },
+			],
 		});
 		table.on("tableBuilt", function(){
-			table.hideColumn("Latitude");
-			table.hideColumn("Longitude");
+			let invisible_column_list = [
+				'OrganisationCode',
+				'LocationID',
+				'DigitalCertificate',
+				'Latitude',
+				'Longitude',
+				'MoreInformationEN',
+				'MoreInformationTC',
+				'MoreInformationLinkEN',
+				'MoreInformationLinkTC',
+				'RemarksEN',
+				'RemarksTC',
+			];
+			invisible_column_list.forEach(columnName => {
+				table.hideColumn(columnName);
+			});
 		});
 		
 		// Map
@@ -56,8 +152,6 @@ $(document).ready(async function() {
 				parseFloat(dt.Latitude),
 				parseFloat(dt.Longitude)
 			];
-			// console.log([dt.Latitude, dt.Longitude]);
-			// console.log(lat_lng);
 			if(![NaN].includes(NaN)) {
 				var marker = new L.Marker(lat_lng);
 				marker.addTo(map);
@@ -65,7 +159,7 @@ $(document).ready(async function() {
 		});
 	});
 	
-	// Timestamp
+	// Modified datetime
 	const response = await getAjax("./modified_datetime.log");
 	$('#modified_datetime').html(`Modified datetime: ${response.trim()}`);
 });
