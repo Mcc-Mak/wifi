@@ -17,13 +17,24 @@ $(document).ready(async function() {
 	].forEach(async (category) => {
 		let i_url = api.wifi[category];
 		const response = await getAjax(i_url);
-		var tabledata = JSON.parse(response.trim());
+		var data = JSON.parse(response.trim());
+		
+		Latitude
+		Longitude
+		// Table
 		var table = new Tabulator("#wifi_" + category, {
-			data: JSON.parse(response.trim()),	//assign data to table
+			data: data,	//assign data to table
 			autoColumns: true,					//create columns from data field names
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
+		});
+		
+		var map = L.map('map').setView([22.3193, 114.1694], 13);
+		// Map
+		data.forEach(dt => {
+			var marker = new L.Marker([dt.Latitude, dt.Longitude]);
+			marker.addTo(map);
 		});
 	});
 });
