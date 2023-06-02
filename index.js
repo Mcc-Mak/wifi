@@ -179,7 +179,7 @@ $(document).ready(async function() {
 				parseFloat(dt.Latitude),
 				parseFloat(dt.Longitude)
 			];
-			var marker = L.marker([lat_lng]);
+			var marker = L.marker(lat_lng);
 			marker.addTo(map);
 		});
 	});
