@@ -44,33 +44,114 @@ $(document).ready(async function() {
 			paginationSize: 25,
 			paginationCounter:"rows",
 			columns: [
-				{'field': 'OrganisationCode'},
-				{'field': 'LocationID'},
-				{'field': 'SSID'},
-				{'field': 'SupportHotline'},
-				{'field': 'LocationNameEN'},
-				{'field': 'LocationNameTC'},
-				{'field': 'AreaEN'},
-				{'field': 'AreaTC'},
-				{'field': 'DistrictEN'},
-				{'field': 'DistrictTC'},
-				{'field': 'AddressEN'},
-				{'field': 'AddressTC'},
-				{'field': 'Latitude'},
-				{'field': 'Longitude'},
-				{'field': 'VenueTypeEN'},
-				{'field': 'VenueTypeTC'},
-				{'field': 'NumberOfHotspots'},
-				{'field': 'DigitalCertificate'},
-				{'field': 'SupportEmail'},
-				{'field': 'MoreInformationEN'},
-				{'field': 'MoreInformationTC'},
-				{'field': 'MoreInformationLinkEN'},
-				{'field': 'MoreInformationLinkTC'},
-				{'field': 'RemarksEN'},
-				{'field': 'RemarksTC'},
-				{'field': 'Latitude'},
-				{'field': 'Longitude'},
+				{
+					"title": "OrganisationCode",
+					"field": "OrganisationCode"
+				},
+				{
+					"title": "LocationID",
+					"field": "LocationID"
+				},
+				{
+					"title": "SSID",
+					"field": "SSID"
+				},
+				{
+					"title": "SupportHotline",
+					"field": "SupportHotline"
+				},
+				{
+					"title": "LocationNameEN",
+					"field": "LocationNameEN"
+				},
+				{
+					"title": "LocationNameTC",
+					"field": "LocationNameTC"
+				},
+				{
+					"title": "AreaEN",
+					"field": "AreaEN"
+				},
+				{
+					"title": "AreaTC",
+					"field": "AreaTC"
+				},
+				{
+					"title": "DistrictEN",
+					"field": "DistrictEN"
+				},
+				{
+					"title": "DistrictTC",
+					"field": "DistrictTC"
+				},
+				{
+					"title": "AddressEN",
+					"field": "AddressEN"
+				},
+				{
+					"title": "AddressTC",
+					"field": "AddressTC"
+				},
+				{
+					"title": "Latitude",
+					"field": "Latitude"
+				},
+				{
+					"title": "Longitude",
+					"field": "Longitude"
+				},
+				{
+					"title": "VenueTypeEN",
+					"field": "VenueTypeEN"
+				},
+				{
+					"title": "VenueTypeTC",
+					"field": "VenueTypeTC"
+				},
+				{
+					"title": "NumberOfHotspots",
+					"field": "NumberOfHotspots"
+				},
+				{
+					"title": "DigitalCertificate",
+					"field": "DigitalCertificate"
+				},
+				{
+					"title": "SupportEmail",
+					"field": "SupportEmail"
+				},
+				{
+					"title": "MoreInformationEN",
+					"field": "MoreInformationEN"
+				},
+				{
+					"title": "MoreInformationTC",
+					"field": "MoreInformationTC"
+				},
+				{
+					"title": "MoreInformationLinkEN",
+					"field": "MoreInformationLinkEN"
+				},
+				{
+					"title": "MoreInformationLinkTC",
+					"field": "MoreInformationLinkTC"
+				},
+				{
+					"title": "RemarksEN",
+					"field": "RemarksEN"
+				},
+				{
+					"title": "RemarksTC",
+					"field": "RemarksTC"
+				},
+				{
+					"title": "Latitude",
+					"field": "Latitude"
+				},
+				{
+					"title": "Longitude",
+					"field": "Longitude"
+				},
 			],
 		});
 		table.on("tableBuilt", function(){
