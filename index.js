@@ -51,8 +51,10 @@ $(document).ready(async function() {
 				parseFloat(dt.Longitude)
 			];
 			console.log(lat_lng);
-			var marker = new L.Marker(lat_lng);
-			marker.addTo(map);
+			if(![NaN].includes(NaN)) {
+				var marker = new L.Marker(lat_lng);
+				marker.addTo(map);
+			}
 		});
 	});
 	
