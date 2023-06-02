@@ -39,7 +39,7 @@ $(document).ready(async function() {
 		// Table
 		var table = new Tabulator(`#wifi_${category}`, {
 			data: data,			//assign data to table
-			autoColumns: true,	//create columns from data field names
+			// autoColumns: true,	//create columns from data field names
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
