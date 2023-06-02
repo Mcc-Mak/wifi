@@ -172,6 +172,8 @@ $(document).ready(async function() {
 				table.hideColumn(columnName);
 			});
 		});
+		
+		var markers = [];
 		table.on("cellClick", function(e, cell) {
 			// Map
 			let rowData = cell.getData();
@@ -179,9 +181,15 @@ $(document).ready(async function() {
 				parseFloat(rowData.Latitude),
 				parseFloat(rowData.Longitude)
 			];
+			markers.forEach(marker => {
+				map.removeLayer(marker);
+			});
 			var marker = L.marker(lat_lng);
 			marker.addTo(map);
 			map.setView(lat_lng);
+			map.setZoom(6);
+			
+			map.invalidateSize();
 		});
 		
 		// Map
