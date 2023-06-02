@@ -225,7 +225,7 @@ $(document).ready(async function() {
 				$(this)
 					.html('Hide')
 					.removeClass('btn-success')
-					.addClass('btn-secondary');
+					.addClass('btn-secondary')
 			);
 	});
 	
