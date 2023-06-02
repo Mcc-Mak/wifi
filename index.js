@@ -203,17 +203,19 @@ $(document).ready(async function() {
 					// map.removeLayer(marker);
 				// });
 				// markers = []
-				if(markers.length == MAX_NO_OF_WIFI_FIXED_SELECTION) {
-					map.removeLayer(markers.shift());
-				}
-				let is_marked = markers.map(marker => {
+				let marked_marker = markers.map(marker => {
 					let ll_m = marker.getLatLng();
-					return [ll_m.lat, ll_m.lng].toString();
-				}).includes(lat_lng.toString());
-				if(!is_marked) {
+					return [ll_m.lat, ll_m.lng].toString() == lat_lng.toString() ? marker : null;
+				});
+				if(marked_marker) {
+					map.removeLayer(marked_marker);
+				} else {
 					var marker = L.marker(lat_lng);
 					marker.addTo(map);
 					markers.push(marker);
+				}
+				if(markers.length > MAX_NO_OF_WIFI_FIXED_SELECTION) {
+					map.removeLayer(markers.shift());
 				}
 				map.setView(lat_lng, 18);
 				
