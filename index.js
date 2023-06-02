@@ -21,15 +21,15 @@ $(document).ready(async function() {
 		
 		// Table
 		var table = new Tabulator("#wifi_" + category, {
-			data: data,	//assign data to table
-			autoColumns: true,					//create columns from data field names
+			data: data,			//assign data to table
+			autoColumns: true,	//create columns from data field names
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
 		});
 		
-		var map = L.map('map').setView([22.3193, 114.1694], 13);
 		// Map
+		var map = L.map('map').setView([22.3193, 114.1694], 13);
 		data.forEach(dt => {
 			var marker = new L.Marker([dt.Latitude, dt.Longitude]);
 			marker.addTo(map);
