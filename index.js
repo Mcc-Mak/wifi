@@ -45,6 +45,14 @@ $(document).ready(async function() {
 			paginationCounter:"rows",
 			columns: [
 				{
+					"title": "Latitude",
+					"field": "Latitude"
+				},
+				{
+					"title": "Longitude",
+					"field": "Longitude"
+				},
+				{
 					"title": "OrganisationCode",
 					"field": "OrganisationCode"
 				},
@@ -59,6 +67,14 @@ $(document).ready(async function() {
 				{
 					"title": "SupportHotline",
 					"field": "SupportHotline"
+				},
+				{
+					"title": "VenueTypeEN",
+					"field": "VenueTypeEN"
+				},
+				{
+					"title": "VenueTypeTC",
+					"field": "VenueTypeTC"
 				},
 				{
 					"title": "LocationNameEN",
@@ -91,22 +107,6 @@ $(document).ready(async function() {
 				{
 					"title": "AddressTC",
 					"field": "AddressTC"
-				},
-				{
-					"title": "Latitude",
-					"field": "Latitude"
-				},
-				{
-					"title": "Longitude",
-					"field": "Longitude"
-				},
-				{
-					"title": "VenueTypeEN",
-					"field": "VenueTypeEN"
-				},
-				{
-					"title": "VenueTypeTC",
-					"field": "VenueTypeTC"
 				},
 				{
 					"title": "NumberOfHotspots",
