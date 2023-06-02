@@ -210,6 +210,24 @@ $(document).ready(async function() {
 			});
 		}
 	});
+
+	// Switch for Map
+	$('#map_on_off_button').on('click', function(){
+		$('#map').is(':visible') ?
+			(
+				$('#map').hide();
+				$(this)
+					.html(`Show`)
+					.removeClass(`btn-secondary`)
+					.addClass(`btn-success`);
+			) : (
+				$('#map').show();
+				$(this)
+					.html(`Hide`)
+					.removeClass(`btn-success`)
+					.addClass(`btn-secondary`);
+			);
+	});
 	
 	// Modified datetime
 	const response = await getAjax("./modified_datetime.log");
