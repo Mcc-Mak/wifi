@@ -27,8 +27,7 @@ $(document).ready(async function() {
 				Object.fromEntries(Object.entries(row).filter(
 					([key]) => {
 						return (
-							!key.includes('SC') &&
-								!["Latitude", "Longitude"].includes(key)
+							!key.includes('SC')
 						)
 					}
 				))
@@ -43,6 +42,8 @@ $(document).ready(async function() {
 			paginationSize: 25,
 			paginationCounter:"rows",
 		});
+		table.hideColumn("Latitude");
+		table.hideColumn("Longitude");
 		
 		// Map
 		data.forEach(dt => {
