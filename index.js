@@ -6,12 +6,13 @@ $(document).ready(async function() {
     console.log(`[index.js] init...`);
 
 	// Constant
-	var api = {
+	const api = {
 		wifi: {
 			fixed: `./fixed-wi-fi-hk-locations.json`,
 			non_fixed: `./non-fixed-wi-fi-hk-locations.json`,
 		}
 	};
+	const MAX_NO_OF_WIFI_FIXED_SELECTION = 5;
 	// variable
 	var map = L.map('map').setView([22.3193, 114.1694], 12);
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -42,7 +43,7 @@ $(document).ready(async function() {
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
-			selectable: category == "fixed" ? 5 : false,
+			selectable: category == "fixed" ? MAX_NO_OF_WIFI_FIXED_SELECTION : false,
 			width: "90%",
 			columns: [
 				{
@@ -202,6 +203,9 @@ $(document).ready(async function() {
 					// map.removeLayer(marker);
 				// });
 				// markers = []
+				if(markers.length == MAX_NO_OF_WIFI_FIXED_SELECTION) {
+					map.removeLayer(markers.shift());
+				}
 				let is_marked = markers.map(marker => {
 					let ll_m = marker.getLatLng();
 					return [ll_m.lat, ll_m.lng].toString();
