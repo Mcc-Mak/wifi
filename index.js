@@ -45,6 +45,7 @@ $(document).ready(async function() {
 			paginationSize: 25,
 			paginationCounter:"rows",
 		});
+		console.log(table.getData()[0])
 		table.hideColumn("Latitude");
 		table.hideColumn("Longitude");
 		
