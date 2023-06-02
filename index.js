@@ -194,35 +194,37 @@ $(document).ready(async function() {
 			});
 		});
 		
-		var markers = [];
-		table.on("cellClick", function(e, cell) {
-			// Map
-			let rowData = cell.getData();
-			let lat_lng = [
-				parseFloat(rowData.Latitude),
-				parseFloat(rowData.Longitude)
-			];
-			// markers.forEach(marker => {
-				// map.removeLayer(marker);
-			// });
-			markers = []
-			var marker = L.marker(lat_lng);
-			marker.addTo(map);
-			markers.push(marker);
-			map.setView(lat_lng, 18);
+		if(category == "fixed") {
+			var markers = [];
+			table.on("cellClick", function(e, cell) {
+				// Map
+				let rowData = cell.getData();
+				let lat_lng = [
+					parseFloat(rowData.Latitude),
+					parseFloat(rowData.Longitude)
+				];
+				// markers.forEach(marker => {
+					// map.removeLayer(marker);
+				// });
+				markers = []
+				var marker = L.marker(lat_lng);
+				marker.addTo(map);
+				markers.push(marker);
+				map.setView(lat_lng, 18);
+				
+				map.invalidateSize();
+			});
 			
-			map.invalidateSize();
-		});
-		
-		// Map
-		// data.forEach(dt => {
-			// let lat_lng = [
-				// parseFloat(dt.Latitude),
-				// parseFloat(dt.Longitude)
-			// ];
-			// var marker = L.marker(lat_lng);
-			// marker.addTo(map);
-		// });
+			// Map
+			// data.forEach(dt => {
+				// let lat_lng = [
+					// parseFloat(dt.Latitude),
+					// parseFloat(dt.Longitude)
+				// ];
+				// var marker = L.marker(lat_lng);
+				// marker.addTo(map);
+			// });
+		}
 	});
 	
 	// Modified datetime
