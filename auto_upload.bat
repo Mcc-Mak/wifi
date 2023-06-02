@@ -6,5 +6,5 @@ echo %timestamp_now: =0% > modified_datetime.log
 git add -A
 REM git reset -- auto_upload.bat
 git commit -m "[auto] git-push"
-git push https://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@github.com/Mcc-Mak/wifi.git
+git push https://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@github.com/Mcc-Mak/wifi.git
 @echo on
