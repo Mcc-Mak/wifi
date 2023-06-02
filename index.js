@@ -25,10 +25,12 @@ $(document).ready(async function() {
 		JSON.parse(response.trim()).forEach(row => {
 			data.push(
 				Object.fromEntries(Object.entries(row).filter(
-					([key]) => return (
-						!key.includes('SC') &&
-							!["Latitude", "Longitude"].includes(key)
-					);
+					([key]) => {
+						return (
+							!key.includes('SC') &&
+								!["Latitude", "Longitude"].includes(key)
+						)
+					};
 				))
 			);
 		});
