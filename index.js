@@ -37,7 +37,7 @@ $(document).ready(async function() {
 		});
 		
 		// Table
-		let table = new Tabulator(`#wifi_${category}`, {
+		let table = new Tabulator(`#wifi_${category}_table`, {
 			data: data,			//assign data to table
 			// autoColumns: true,	//create columns from data field names
 			pagination: "local",
@@ -147,6 +147,8 @@ $(document).ready(async function() {
 			],
 		});
 		table.on("tableBuilt", function(){
+			$(`#wifi_${category}_title`).html(`WiFi (${category == "non_fixed" ? "Non-" : ""}Fixed)`);
+			
 			let invisible_column_core = [
 				'OrganisationCode',
 				'LocationID',
