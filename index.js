@@ -194,7 +194,8 @@ $(document).ready(async function() {
 			var markers = [];
 			table.on("cellClick", function(e, cell) {
 				// Table
-				table.selectRow(cell.getRow().getIndex());
+				table.getSelectedRows().forEach(row => row.deselect());
+				cell.getRow().select();
 				
 				// Map
 				let rowData = cell.getData();
