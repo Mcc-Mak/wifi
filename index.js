@@ -25,7 +25,10 @@ $(document).ready(async function() {
 		JSON.parse(response.trim()).forEach(row => {
 			data.push(
 				Object.fromEntries(Object.entries(row).filter(
-					([key]) => !key.includes('SC')
+					([key]) => return (
+						!key.includes('SC') &&
+							!["Latitude", "Longitude"].includes(key)
+					);
 				))
 			);
 		});
@@ -41,9 +44,15 @@ $(document).ready(async function() {
 		
 		// Map
 		data.forEach(dt => {
-			var marker = new L.Marker([dt.Latitude, dt.Longitude]);
-			console.log(`(lat, lng) = (${dt.Latitude}(type=${typeof(dt.Latitude)}), ${dt.Longitude}(type=${typeof(dt.Longitude)}))`);
+			var marker = new L.Marker([
+				parseFloat(dt.Latitude),
+				parseFloat(dt.Longitude)
+			]);
 			marker.addTo(map);
 		});
 	});
+	
+	// Timestamp
+	const response = await getAjax("./modified_datetime.log");
+	$('#modified_datetime').html(response.trim());
 });
