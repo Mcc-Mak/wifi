@@ -181,15 +181,14 @@ $(document).ready(async function() {
 				parseFloat(rowData.Latitude),
 				parseFloat(rowData.Longitude)
 			];
-			markers = markers.filter(marker => {
+			markers.forEach(marker => {
 				map.removeLayer(marker);
-				return false;
 			});
+			markers = []
 			var marker = L.marker(lat_lng);
 			marker.addTo(map);
 			markers.push(marker);
-			map.setView(lat_lng);
-			map.setZoom(18);
+			map.setView(lat_lng, 18);
 			
 			map.invalidateSize();
 		});
