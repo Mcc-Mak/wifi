@@ -219,13 +219,15 @@ $(document).ready(async function() {
 				$(this)
 					.html('Show')
 					.removeClass('btn-secondary')
-					.addClass('btn-success')
+					.addClass('btn-success') &&
+				$("#wifi_non_fixed_title").parent().css({"padding-top": "0"})
 			) : (
 				$('#map').show() &&
 				$(this)
 					.html('Hide')
 					.removeClass('btn-success')
-					.addClass('btn-secondary')
+					.addClass('btn-secondary') &&
+				$("#wifi_non_fixed_title").parent().css({"padding-top": "800px"})
 			);
 	});
 	
