@@ -215,13 +215,13 @@ $(document).ready(async function() {
 	$('#map_on_off_button').on('click', function(){
 		$('#map').is(':visible') ?
 			(
-				$('#map').hide();
+				$('#map').hide() &&
 				$(this)
 					.html('Show')
 					.removeClass('btn-secondary')
-					.addClass('btn-success');
+					.addClass('btn-success')
 			) : (
-				$('#map').show();
+				$('#map').show() &&
 				$(this)
 					.html('Hide')
 					.removeClass('btn-success')
