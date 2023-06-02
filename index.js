@@ -46,10 +46,12 @@ $(document).ready(async function() {
 		
 		// Map
 		data.forEach(dt => {
-			var marker = new L.Marker([
+			let lat_lng = [
 				parseFloat(dt.Latitude),
 				parseFloat(dt.Longitude)
-			]);
+			];
+			console.log(lat_lng);
+			var marker = new L.Marker(lat_lng);
 			marker.addTo(map);
 		});
 	});
