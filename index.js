@@ -207,12 +207,10 @@ $(document).ready(async function() {
 					let ll_m = marker.getLatLng();
 					return [ll_m.lat, ll_m.lng].toString() == lat_lng.toString() ? marker : null;
 				});
-				console.log(">>> start");
-				console.log(markers);
-				console.log(marked_marker);
-				console.log(lat_lng);
-				if(marked_marker) {
-					map.removeLayer(marked_marker);
+				if(marked_marker.length > 0) {
+					marked_marker.forEach(marker => {
+						map.removeLayer(marker);
+					});
 				} else {
 					var marker = L.marker(lat_lng);
 					marker.addTo(map);
