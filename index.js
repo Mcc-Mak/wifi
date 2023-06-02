@@ -30,7 +30,7 @@ $(document).ready(async function() {
 							!key.includes('SC') &&
 								!["Latitude", "Longitude"].includes(key)
 						)
-					};
+					}
 				))
 			);
 		});
