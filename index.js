@@ -55,7 +55,7 @@ $(document).ready(async function() {
 				parseFloat(dt.Longitude)
 			];
 			// console.log([dt.Latitude, dt.Longitude]);
-			console.log(lat_lng);
+			// console.log(lat_lng);
 			if(![NaN].includes(NaN)) {
 				var marker = new L.Marker(lat_lng);
 				marker.addTo(map);
