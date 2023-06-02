@@ -39,12 +39,11 @@ $(document).ready(async function() {
 		// Table
 		let table = new Tabulator(`#wifi_${category}_table`, {
 			data: data,			//assign data to table
-			// autoColumns: true,	//create columns from data field names
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
-			selectable: category == "fixed" ? 1 : false,
-			// selectableRollingSelection: false,
+			selectable: category == "fixed" ? 5 : false,
+			width: "90%",
 			columns: [
 				{
 					"title": "Latitude",
@@ -192,11 +191,7 @@ $(document).ready(async function() {
 		
 		if(category == "fixed") {
 			var markers = [];
-			table.on("cellClick", function(e, cell) {
-				// Table
-				// table.getSelectedRows().forEach(row => row.deselect());
-				// cell.getRow().select();
-				
+			table.on("cellClick", function(e, cell) {				
 				// Map
 				let rowData = cell.getData();
 				let lat_lng = [
