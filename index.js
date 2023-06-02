@@ -231,5 +231,5 @@ $(document).ready(async function() {
 	
 	// Modified datetime
 	const response = await getAjax("./modified_datetime.log");
-	$('#modified_datetime').html(`Modified datetime: ${response.trim()}`);
+	$('#modified_datetime').html(`(Modified datetime: ${response.trim()})`);
 });
