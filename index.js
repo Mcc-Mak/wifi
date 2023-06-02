@@ -13,7 +13,7 @@ $(document).ready(async function() {
 		}
 	};
 	// variable
-	var map = L.map('map').setView([22.3193, 114.1694], 13);
+	var map = L.map('map').setView([22.3193, 114.1694], 12);
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; 2023-JUN'
 	}).addTo(map);
