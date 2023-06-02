@@ -155,21 +155,26 @@ $(document).ready(async function() {
 			],
 		});
 		table.on("tableBuilt", function(){
+			let invisible_column_core = [
+				'OrganisationCode',
+				'LocationID',
+				'DigitalCertificate',
+				'Latitude',
+				'Longitude',
+				'MoreInformationEN',
+				'MoreInformationTC',
+				'MoreInformationLinkEN',
+				'MoreInformationLinkTC',
+				'RemarksEN',
+				'RemarksTC',
+			];
+			invisible_column_core.forEach(columnName => {
+				table.hideColumn(columnName);
+			});
+			
 			let invisible_column_mapper = {
 				wifi: {
-					fixed: [
-						'OrganisationCode',
-						'LocationID',
-						'DigitalCertificate',
-						'Latitude',
-						'Longitude',
-						'MoreInformationEN',
-						'MoreInformationTC',
-						'MoreInformationLinkEN',
-						'MoreInformationLinkTC',
-						'RemarksEN',
-						'RemarksTC',
-					],
+					fixed: [],
 					non_fixed: [
 						'AreaEN',
 						'AreaTC',
@@ -183,8 +188,7 @@ $(document).ready(async function() {
 						'VenueTypeTC',
 					],
 				},
-			};
-			
+			};			
 			invisible_column_list.wifi[`${category}`].forEach(columnName => {
 				table.hideColumn(columnName);
 			});
@@ -198,9 +202,9 @@ $(document).ready(async function() {
 				parseFloat(rowData.Latitude),
 				parseFloat(rowData.Longitude)
 			];
-			markers.forEach(marker => {
-				map.removeLayer(marker);
-			});
+			// markers.forEach(marker => {
+				// map.removeLayer(marker);
+			// });
 			markers = []
 			var marker = L.marker(lat_lng);
 			marker.addTo(map);
