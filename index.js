@@ -5,12 +5,16 @@ async function getAjax(i_url = "") {
 $(document).ready(async function() {
     console.log(`[index.js] init...`);
 
-	let api = {
+	// Constant
+	var api = {
 		wifi: {
 			fixed: `./fixed-wi-fi-hk-locations.json`,
 			non_fixed: `./non-fixed-wi-fi-hk-locations.json`,
 		}
 	};
+	// variable
+	var map = L.map('map').setView([22.3193, 114.1694], 13);
+	
 	[
 		"fixed",
 		"non_fixed"
@@ -29,7 +33,6 @@ $(document).ready(async function() {
 		});
 		
 		// Map
-		var map = L.map('map').setView([22.3193, 114.1694], 13);
 		data.forEach(dt => {
 			var marker = new L.Marker([dt.Latitude, dt.Longitude]);
 			marker.addTo(map);
