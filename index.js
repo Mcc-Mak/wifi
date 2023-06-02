@@ -217,15 +217,15 @@ $(document).ready(async function() {
 			(
 				$('#map').hide();
 				$(this)
-					.html(`Show`)
-					.removeClass(`btn-secondary`)
-					.addClass(`btn-success`);
+					.html('Show')
+					.removeClass('btn-secondary')
+					.addClass('btn-success');
 			) : (
 				$('#map').show();
 				$(this)
-					.html(`Hide`)
-					.removeClass(`btn-success`)
-					.addClass(`btn-secondary`);
+					.html('Hide')
+					.removeClass('btn-success')
+					.addClass('btn-secondary');
 			);
 	});
 	
