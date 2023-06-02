@@ -210,7 +210,7 @@ $(document).ready(async function() {
 				if(marked_marker.length > 0) {
 					marked_marker.forEach(marker => {
 						map.removeLayer(marker);
-						markers.filter(m => {
+						markers = markers.filter(m => {
 							let ll_m = marker.getLatLng();
 							let ll_m_d = m.getLatLng();
 							return [ll_m.lat, ll_m.lng].toString() != [ll_m_d.lat, ll_m_d.lng].toString();
