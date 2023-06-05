@@ -38,13 +38,11 @@ $(document).ready(async function() {
 		});
 		
 		// Table
-		let table = new Tabulator(`#wifi_${category}_table`, {
+		let columnSetup = {
 			data: data,			//assign data to table
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
-			selectable: category == "fixed" ? MAX_NO_OF_WIFI_FIXED_SELECTION : false,
-			width: "90%",
 			columns: [
 				{
 					"title": "Latitude",
@@ -147,7 +145,14 @@ $(document).ready(async function() {
 					"field": "RemarksTC"
 				},
 			],
-		});
+		};
+		if(category == "fixed") {
+			columnSetup.selectable = MAX_NO_OF_WIFI_FIXED_SELECTION;
+		} else {
+			columnSetup.selectable = false;
+			width = 900;
+		}
+		let table = new Tabulator(`#wifi_${category}_table`, columnSetup);
 		table.on("tableBuilt", function(){
 			$(`#wifi_${category}_title`).html(`WiFi (${category == "non_fixed" ? "Non-" : ""}Fixed)`);
 			
