@@ -146,7 +146,6 @@ $(document).ready(async function() {
 			paginationSize: 25,
 			paginationCounter:"rows",
 			selectable: category == "fixed" ? MAX_NO_OF_WIFI_FIXED_SELECTION : false,
-			width: category == "fixed" ?  : false,
 			columns: columnsDefinition,
 		});
 		table.on("tableBuilt", function(){
