@@ -38,123 +38,117 @@ $(document).ready(async function() {
 		});
 		
 		// Table
-		let columnSetup = {
+		let columnsDefinition = [
+			{
+				"title": "Latitude",
+				"field": "Latitude"
+			},
+			{
+				"title": "Longitude",
+				"field": "Longitude"
+			},
+			{
+				"title": "OrganisationCode",
+				"field": "OrganisationCode"
+			},
+			{
+				"title": "LocationID",
+				"field": "LocationID"
+			},
+			{
+				"title": "SSID",
+				"field": "SSID"
+			},
+			{
+				"title": "SupportHotline",
+				"field": "SupportHotline"
+			},
+			{
+				"title": "VenueTypeEN",
+				"field": "VenueTypeEN"
+			},
+			{
+				"title": "VenueTypeTC",
+				"field": "VenueTypeTC"
+			},
+			{
+				"title": "LocationNameEN",
+				"field": "LocationNameEN"
+			},
+			{
+				"title": "LocationNameTC",
+				"field": "LocationNameTC"
+			},
+			{
+				"title": "AreaEN",
+				"field": "AreaEN"
+			},
+			{
+				"title": "AreaTC",
+				"field": "AreaTC"
+			},
+			{
+				"title": "DistrictEN",
+				"field": "DistrictEN"
+			},
+			{
+				"title": "DistrictTC",
+				"field": "DistrictTC"
+			},
+			{
+				"title": "AddressEN",
+				"field": "AddressEN"
+			},
+			{
+				"title": "AddressTC",
+				"field": "AddressTC"
+			},
+			{
+				"title": "NumberOfHotspots",
+				"field": "NumberOfHotspots"
+			},
+			{
+				"title": "DigitalCertificate",
+				"field": "DigitalCertificate"
+			},
+			{
+				"title": "SupportEmail",
+				"field": "SupportEmail"
+			},
+			{
+				"title": "MoreInformationEN",
+				"field": "MoreInformationEN"
+			},
+			{
+				"title": "MoreInformationTC",
+				"field": "MoreInformationTC"
+			},
+			{
+				"title": "MoreInformationLinkEN",
+				"field": "MoreInformationLinkEN"
+			},
+			{
+				"title": "MoreInformationLinkTC",
+				"field": "MoreInformationLinkTC"
+			},
+			{
+				"title": "RemarksEN",
+				"field": "RemarksEN"
+			},
+			{
+				"title": "RemarksTC",
+				"field": "RemarksTC"
+			},
+		];
+		let table = new Tabulator(`#wifi_${category}_table`, {
 			data: data,			//assign data to table
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
-			selectable: false,
-			width: 900,
-			columns: [
-				{
-					"title": "Latitude",
-					"field": "Latitude"
-				},
-				{
-					"title": "Longitude",
-					"field": "Longitude"
-				},
-				{
-					"title": "OrganisationCode",
-					"field": "OrganisationCode"
-				},
-				{
-					"title": "LocationID",
-					"field": "LocationID"
-				},
-				{
-					"title": "SSID",
-					"field": "SSID"
-				},
-				{
-					"title": "SupportHotline",
-					"field": "SupportHotline"
-				},
-				{
-					"title": "VenueTypeEN",
-					"field": "VenueTypeEN"
-				},
-				{
-					"title": "VenueTypeTC",
-					"field": "VenueTypeTC"
-				},
-				{
-					"title": "LocationNameEN",
-					"field": "LocationNameEN"
-				},
-				{
-					"title": "LocationNameTC",
-					"field": "LocationNameTC"
-				},
-				{
-					"title": "AreaEN",
-					"field": "AreaEN"
-				},
-				{
-					"title": "AreaTC",
-					"field": "AreaTC"
-				},
-				{
-					"title": "DistrictEN",
-					"field": "DistrictEN"
-				},
-				{
-					"title": "DistrictTC",
-					"field": "DistrictTC"
-				},
-				{
-					"title": "AddressEN",
-					"field": "AddressEN"
-				},
-				{
-					"title": "AddressTC",
-					"field": "AddressTC"
-				},
-				{
-					"title": "NumberOfHotspots",
-					"field": "NumberOfHotspots"
-				},
-				{
-					"title": "DigitalCertificate",
-					"field": "DigitalCertificate"
-				},
-				{
-					"title": "SupportEmail",
-					"field": "SupportEmail"
-				},
-				{
-					"title": "MoreInformationEN",
-					"field": "MoreInformationEN"
-				},
-				{
-					"title": "MoreInformationTC",
-					"field": "MoreInformationTC"
-				},
-				{
-					"title": "MoreInformationLinkEN",
-					"field": "MoreInformationLinkEN"
-				},
-				{
-					"title": "MoreInformationLinkTC",
-					"field": "MoreInformationLinkTC"
-				},
-				{
-					"title": "RemarksEN",
-					"field": "RemarksEN"
-				},
-				{
-					"title": "RemarksTC",
-					"field": "RemarksTC"
-				},
-			],
-		};
-		// if(category == "fixed") {
-			// columnSetup.selectable = MAX_NO_OF_WIFI_FIXED_SELECTION;
-		// } else {
-			// columnSetup.selectable = false;
-			// columnSetup.width = 900;
-		// }
-		let table = new Tabulator(`#wifi_${category}_table`, columnSetup);
+			selectable: category == "fixed" ? MAX_NO_OF_WIFI_FIXED_SELECTION : false,
+			width: category == "fixed" ?  : false,
+			columns: columnsDefinition,
+		});
 		table.on("tableBuilt", function(){
 			$(`#wifi_${category}_title`).html(`WiFi (${category == "non_fixed" ? "Non-" : ""}Fixed)`);
 			
