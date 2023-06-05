@@ -150,7 +150,7 @@ $(document).ready(async function() {
 			columnSetup.selectable = MAX_NO_OF_WIFI_FIXED_SELECTION;
 		} else {
 			columnSetup.selectable = false;
-			width = 900;
+			columnSetup.width = 900;
 		}
 		let table = new Tabulator(`#wifi_${category}_table`, columnSetup);
 		table.on("tableBuilt", function(){
