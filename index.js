@@ -43,6 +43,8 @@ $(document).ready(async function() {
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
+			selectable: false,
+			width: 900,
 			columns: [
 				{
 					"title": "Latitude",
@@ -146,12 +148,12 @@ $(document).ready(async function() {
 				},
 			],
 		};
-		if(category == "fixed") {
-			columnSetup.selectable = MAX_NO_OF_WIFI_FIXED_SELECTION;
-		} else {
-			columnSetup.selectable = false;
-			columnSetup.width = 900;
-		}
+		// if(category == "fixed") {
+			// columnSetup.selectable = MAX_NO_OF_WIFI_FIXED_SELECTION;
+		// } else {
+			// columnSetup.selectable = false;
+			// columnSetup.width = 900;
+		// }
 		let table = new Tabulator(`#wifi_${category}_table`, columnSetup);
 		table.on("tableBuilt", function(){
 			$(`#wifi_${category}_title`).html(`WiFi (${category == "non_fixed" ? "Non-" : ""}Fixed)`);
