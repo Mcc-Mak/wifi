@@ -144,7 +144,7 @@ $(document).ready(async function() {
 		];
 		let table = new Tabulator(`#wifi_${category}_table`, {
 			data: data,			//assign data to table
-			height: 500,
+			height: category == "fixed" ? 500 : null,
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
