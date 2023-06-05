@@ -16,34 +16,42 @@
 
 <body class="bg-dark noselect">
 	<div class="d-flex flex-column">
-		<div class="d-flex justify-content-center pt-3 pb-3">
-			<h1 class="text-decoration-underline text-light text-center">
-				WiFi-Distribution in HK<br />
-				<span id="modified_datetime" class="text-primary"></span>
-			</h1>
-		</div>
-		<div class="d-flex flex-column align-items-center">
-			<div id="map"
-				class="border border-info rounded"
-				style="width: 700; height: 700; border: solid; border-width: 5!important; position: fixed; left: 50%-350; z-index: 10">
+		<!-- header -->
+		<nav class="navbar navbar-light bg-light">
+			<!-- icon -->
+			<a class="navbar-brand" href="#">
+				<img src="./statics/img/wifi.PNG" width="40" height="40" class="d-inline-block align-top">
+					WiFi-Distribution in HK
+			</a>
+			<!-- map -->
+			<div class="d-flex flex-column align-items-center">
+				<div id="map"
+					class="border border-info rounded"
+					style="width: 700; height: 700; border: solid; border-width: 5!important; position: fixed; left: 50%-350; z-index: 10">
+				</div>
+				<div style="z-index: 11; border: groove; position: fixed">
+					<button id="map_on_off_button"
+						class="btn btn-secondary rounded p-2">
+						Hide
+					</button>
+				</div>
 			</div>
-			<div style="z-index: 11; border: groove; position: fixed">
-				<button id="map_on_off_button"
-					class="btn btn-secondary rounded p-2">
-					Hide
-				</button>
+			<!-- modified datetime -->
+			<span id="modified_datetime" class="text-primary">(Modified datetime: 2023-06-05T09:58:20)</span>
+		</nav>
+		<!-- body -->
+		<div class="bg-dark">
+			<div class="d-flex flex-column pb-3" style="padding-top: 50px">
+				<div id="wifi_non_fixed_title" class="d-flex justify-content-center pt-3 pb-3 text-warning"></div>
+				<div class="d-flex justify-content-center">
+					<div id="wifi_non_fixed_table" style="width: 900"></div>
+				</div>
 			</div>
-		</div>
-		<div class="d-flex flex-column pb-3" style="padding-top: 50px">
-			<div id="wifi_non_fixed_title" class="d-flex justify-content-center pt-3 pb-3 text-warning"></div>
-			<div class="d-flex justify-content-center">
-				<div id="wifi_non_fixed_table" style="width: 900"></div>
-			</div>
-		</div>
-		<div class="d-flex flex-column pt-3 pb-3">
-			<div id="wifi_fixed_title" class="d-flex justify-content-center pt-3 pb-3 text-info"></div>
-			<div class="d-flex justify-content-center">
-				<div id="wifi_fixed_table" style="width: 90%"></div>
+			<div class="d-flex flex-column pt-3 pb-3">
+				<div id="wifi_fixed_title" class="d-flex justify-content-center pt-3 pb-3 text-info"></div>
+				<div class="d-flex justify-content-center">
+					<div id="wifi_fixed_table" style="width: 90%"></div>
+				</div>
 			</div>
 		</div>
 	</div>

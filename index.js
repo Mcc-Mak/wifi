@@ -13,12 +13,14 @@ $(document).ready(async function() {
 		}
 	};
 	const MAX_NO_OF_WIFI_FIXED_SELECTION = 5;
+	
 	// variable
 	var map = L.map('map').setView([22.3193, 114.1694], 12);
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; 2023-JUN'
 	}).addTo(map);
 	
+	// __MAIN__
 	[
 		"fixed",
 		"non_fixed"
@@ -203,10 +205,6 @@ $(document).ready(async function() {
 					parseFloat(rowData.Latitude),
 					parseFloat(rowData.Longitude)
 				];
-				// markers.forEach(marker => {
-					// map.removeLayer(marker);
-				// });
-				// markers = []
 				let marked_marker = markers.filter(marker => {
 					let ll_m = marker.getLatLng();
 					return [ll_m.lat, ll_m.lng].toString() == lat_lng.toString();
@@ -244,7 +242,6 @@ $(document).ready(async function() {
 					.html('Show')
 					.removeClass('btn-secondary')
 					.addClass('btn-success') &&
-				// $("#wifi_non_fixed_title").parent().css({"padding-top": "50px"}) &&
 				map.invalidateSize()
 			) : (
 				$('#map').show() &&
@@ -252,7 +249,6 @@ $(document).ready(async function() {
 					.html('Hide')
 					.removeClass('btn-success')
 					.addClass('btn-secondary') &&
-				// $("#wifi_non_fixed_title").parent().css({"padding-top": "800px"}) &&
 				map.invalidateSize()
 			);
 	});
