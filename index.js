@@ -2,6 +2,16 @@ async function getAjax(i_url = "") {
 	return await $.ajax(i_url, {dataType: "text"});
 }
 
+function getAllUnique(data) {
+	return data.filter((value, index, self) => self.indexOf(value) === index).sort();
+}
+
+function getHeaderFilterParams(data, v_type) {
+	return getAllUnique(
+		data.map(r => r[v_type])
+	);
+}
+
 $(document).ready(async function() {
     console.log(`[index.js] init...`);
 
@@ -42,109 +52,138 @@ $(document).ready(async function() {
 		// Table
 		let columnsDefinition = [
 			{
-				"title": "Latitude",
-				"field": "Latitude"
+				title: "Latitude",
+				field: "Latitude",
 			},
 			{
-				"title": "Longitude",
-				"field": "Longitude"
+				title: "Longitude",
+				field: "Longitude",
 			},
 			{
-				"title": "OrganisationCode",
-				"field": "OrganisationCode"
+				title: "OrganisationCode",
+				field: "OrganisationCode",
 			},
 			{
-				"title": "LocationID",
-				"field": "LocationID"
+				title: "LocationID",
+				field: "LocationID",
 			},
 			{
-				"title": "SSID",
-				"field": "SSID"
+				title: "SSID",
+				field: "SSID",
 			},
 			{
-				"title": "SupportHotline",
-				"field": "SupportHotline"
+				title: "SupportHotline",
+				field: "SupportHotline",
 			},
 			{
-				"title": "VenueTypeEN",
-				"field": "VenueTypeEN"
+				title: "VenueTypeEN",
+				field: "VenueTypeEN",
 			},
 			{
-				"title": "VenueTypeTC",
-				"field": "VenueTypeTC"
+				title: "VenueTypeTC",
+				field: "VenueTypeTC",
 			},
 			{
-				"title": "LocationNameEN",
-				"field": "LocationNameEN"
+				title: "LocationNameEN",
+				field: "LocationNameEN",
 			},
 			{
-				"title": "LocationNameTC",
-				"field": "LocationNameTC"
+				title: "LocationNameTC",
+				field: "LocationNameTC",
 			},
 			{
-				"title": "AreaEN",
-				"field": "AreaEN"
+				title: "AreaEN",
+				field: "AreaEN",
 			},
 			{
-				"title": "AreaTC",
-				"field": "AreaTC"
+				title: "AreaTC",
+				field: "AreaTC",
 			},
 			{
-				"title": "DistrictEN",
-				"field": "DistrictEN"
+				title: "DistrictEN",
+				field: "DistrictEN",
 			},
 			{
-				"title": "DistrictTC",
-				"field": "DistrictTC"
+				title: "DistrictTC",
+				field: "DistrictTC",
 			},
 			{
-				"title": "AddressEN",
-				"field": "AddressEN"
+				title: "AddressEN",
+				field: "AddressEN",
 			},
 			{
-				"title": "AddressTC",
-				"field": "AddressTC"
+				title: "AddressTC",
+				field: "AddressTC",
 			},
 			{
-				"title": "NumberOfHotspots",
-				"field": "NumberOfHotspots"
+				title: "NumberOfHotspots",
+				field: "NumberOfHotspots",
 			},
 			{
-				"title": "DigitalCertificate",
-				"field": "DigitalCertificate"
+				title: "DigitalCertificate",
+				field: "DigitalCertificate",
 			},
 			{
-				"title": "SupportEmail",
-				"field": "SupportEmail"
+				title: "SupportEmail",
+				field: "SupportEmail",
 			},
 			{
-				"title": "MoreInformationEN",
-				"field": "MoreInformationEN"
+				title: "MoreInformationEN",
+				field: "MoreInformationEN",
 			},
 			{
-				"title": "MoreInformationTC",
-				"field": "MoreInformationTC"
+				title: "MoreInformationTC",
+				field: "MoreInformationTC",
 			},
 			{
-				"title": "MoreInformationLinkEN",
-				"field": "MoreInformationLinkEN"
+				title: "MoreInformationLinkEN",
+				field: "MoreInformationLinkEN",
 			},
 			{
-				"title": "MoreInformationLinkTC",
-				"field": "MoreInformationLinkTC"
+				title: "MoreInformationLinkTC",
+				field: "MoreInformationLinkTC",
 			},
 			{
-				"title": "RemarksEN",
-				"field": "RemarksEN"
+				title: "RemarksEN",
+				field: "RemarksEN",
 			},
 			{
-				"title": "RemarksTC",
-				"field": "RemarksTC"
+				title: "RemarksTC",
+				field: "RemarksTC",
 			},
 		];
+		if(category == "fixed") {
+			let columnsWithHeaderFilter = {
+				wifi: {
+					non_fixed: [],
+					fixed: [
+						"SSID",
+						"VenueTypeTC",
+						"VenueTypeEN",
+						"LocationNameTC",
+						"LocationNameEN",
+						"AreaTC",
+						"AreaEN",
+						"DistrictTC",
+						"DistrictEN",
+					],
+				}
+			};
+			for (let i=0; i<columnsDefinition.length; i++) {
+				let columnObject = columnsDefinition[i];
+				if(columnsWithHeaderFilter.wifi.fixed.includes(columnObject.field)) {
+					columnObject["headerFilter"] = "select";
+					columnObject["headerFilterFunc"] = "in";
+					columnObject["headerFilterParams"] = {
+						values: getHeaderFilterParams(data, `${columnObject.field}`),
+						multiselect: true,
+					};
+				}
+			}
+		}
 		let table = new Tabulator(`#wifi_${category}_table`, {
 			data: data,			//assign data to table
-			height: category == "fixed" ? 500 : null,
+			height: category == "fixed" ? 480 : null,
 			pagination: "local",
 			paginationSize: 25,
 			paginationCounter:"rows",
