@@ -1,20 +1,55 @@
-async function getAjax(i_url = "") {
-  return await $.ajax(i_url, { dataType: "text" });
-}
+var invisible_column_core = [
+  "OrganisationCode",
+  "LocationID",
+  "DigitalCertificate",
+  "Latitude",
+  "Longitude",
+  "MoreInformationEN",
+  "MoreInformationTC",
+  "MoreInformationLinkEN",
+  "MoreInformationLinkTC",
+  "RemarksEN",
+  "RemarksTC",
+];
+var invisible_column_mapper = {
+  wifi: {
+    fixed: [],
+    non_fixed: [
+      "AreaEN",
+      "AreaTC",
+      "DistrictEN",
+      "DistrictTC",
+      "AddressEN",
+      "AddressTC",
+      "Latitude",
+      "Longitude",
+      "VenueTypeEN",
+      "VenueTypeTC",
+    ],
+  },
+};
 
-function getAllUnique(data) {
-  return data
-    .filter((value, index, self) => self.indexOf(value) === index)
-    .sort();
-}
-
-function getHeaderFilterParams(data, v_type) {
-  return getAllUnique(data.map((r) => r[v_type]));
+function initialize(table = null, category = "") {
+  if (category == "fixed") {
+    table
+      .getColumns()
+      .filter((e) => {
+        return !invisible_column_core
+          .concat(invisible_column_mapper.wifi[`${category}`])
+          .includes(e._column.definition.field);
+      })
+      .forEach((column_o) => {
+        let column = column_o._column.definition;
+        $("#filter-field").append(
+          `<option value="${column.field}">${column.title}</option>`
+        );
+      });
+  }
 }
 
 function refreshHeaderFilter(table = null, category = "") {
+  // Definition
   if (category == "fixed") {
-    // Definition
     let columnsWithFilter = [
       "SSID",
       "VenueTypeEN",
@@ -31,10 +66,11 @@ function refreshHeaderFilter(table = null, category = "") {
         column._column.definition.headerFilter = "select";
         column._column.definition.headerFilterFunc = "in";
         column._column.definition.headerFilterParams = {
-          values: getHeaderFilterParams(
-            table.getData("active"),
-            column._column.definition.field
-          ),
+          values: table
+            .getData("active")
+            .map((r) => r[column._column.definition.field])
+            .filter((value, index, self) => self.indexOf(value) === index)
+            .sort(),
           multiselect: true,
         };
       }
@@ -44,42 +80,11 @@ function refreshHeaderFilter(table = null, category = "") {
   }
 
   // Visibility
-  let invisible_column_core = [
-    "OrganisationCode",
-    "LocationID",
-    "DigitalCertificate",
-    "Latitude",
-    "Longitude",
-    "MoreInformationEN",
-    "MoreInformationTC",
-    "MoreInformationLinkEN",
-    "MoreInformationLinkTC",
-    "RemarksEN",
-    "RemarksTC",
-  ];
-  invisible_column_core.forEach((columnName) => {
-    table.hideColumn(columnName);
-  });
-  let invisible_column_mapper = {
-    wifi: {
-      fixed: [],
-      non_fixed: [
-        "AreaEN",
-        "AreaTC",
-        "DistrictEN",
-        "DistrictTC",
-        "AddressEN",
-        "AddressTC",
-        "Latitude",
-        "Longitude",
-        "VenueTypeEN",
-        "VenueTypeTC",
-      ],
-    },
-  };
-  invisible_column_mapper.wifi[`${category}`].forEach((columnName) => {
-    table.hideColumn(columnName);
-  });
+  invisible_column_core
+    .concat(invisible_column_mapper.wifi[`${category}`])
+    .forEach((columnName) => {
+      table.hideColumn(columnName);
+    });
 }
 
 $(document).ready(async function () {
@@ -102,21 +107,20 @@ $(document).ready(async function () {
 
   // __MAIN__
   ["fixed", "non_fixed"].forEach(async (category) => {
-    let i_url = api.wifi[`${category}`];
-    const response = await getAjax(i_url);
-    var data = [];
-    JSON.parse(response.trim()).forEach((row) => {
-      let row_n = Object.fromEntries(
-        Object.entries(row).filter(([key]) => {
-          return !key.includes("SC");
-        })
-      );
-      data.push(row_n);
-    });
-
     // Table
     let table = new Tabulator(`#wifi_${category}_table`, {
-      data: data, //assign data to table
+      ajaxURL: `${api.wifi[category]}`,
+      ajaxResponse: function (url, params, response) {
+        let data = response.map((row) => {
+          let row_n = Object.fromEntries(
+            Object.entries(row).filter(([key]) => {
+              return !key.includes("SC");
+            })
+          );
+          return row_n;
+        });
+        return data;
+      },
       height: category == "fixed" ? 480 : null,
       pagination: "local",
       paginationSize: 25,
@@ -225,33 +229,46 @@ $(document).ready(async function () {
         },
       ],
     });
+
     table.on("tableBuilt", function () {
       $(`#wifi_${category}_title`).html(
         `WiFi (${category == "non_fixed" ? "Non-" : ""}Fixed)`
       );
 
-      if (category == "fixed") {
-        this.getColumns().forEach((column_o) => {
-          let column = column_o._column.definition;
-          $("#filter-field").append(
-            `<option value="${column.field}">${column.title}</option>`
-          );
-        });
-      }
+      initialize(table, category);
 
       refreshHeaderFilter(table, category);
     });
 
+    table.on("renderComplete", function () {
+      refreshHeaderFilter(table, category);
+    });
+
     if (category == "fixed") {
+      // Default condition(s)
       table.setFilter("LocationNameTC", "in", ["香港教育大學"]);
-	  
+
       // Event handlers
+      var markers = [];
       $("#filter-clear").on("click", function () {
         table.clearFilter(true);
+        table.getSelectedRows().forEach((row) => {
+          let e = row._row.getCells()[0].getElement();
+          e.click();
+        });
         refreshHeaderFilter(table, category);
       });
-
-      var markers = [];
+      $("#filter-add").on("click", function () {
+        let data = {
+          field: $("#filter-field").val(),
+          type: $("#filter-type").val(),
+          value: $("#filter-value").val(),
+        };
+        console.log(`data.field: ${data.field}`);
+        console.log(`data.type: ${data.type}`);
+        console.log(`data.value: ${data.value}`);
+        table.setFilter(data.field, data.type, data.value);
+      });
       table.on("cellClick", function (e, cell) {
         // Map
         let rowData = cell.getData();
@@ -308,6 +325,8 @@ $(document).ready(async function () {
   });
 
   // Modified datetime
-  const response = await getAjax("./modified_datetime.log");
+  const response = await $.ajax("./modified_datetime.log", {
+    dataType: "text",
+  });
   $("#modified_datetime").html(`${response.trim()}`);
 });
