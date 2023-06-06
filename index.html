@@ -40,7 +40,7 @@
 			<!-- modified datetime -->
 			<div>
 				<div class="d-inline p-1 input-group-text">Updated datetime:</div>
-				<div id="modified_datetime" class="d-inline p-1 form-control" disabled>2023.06.05 00:00:00</div>
+				<div id="modified_datetime" class="d-inline p-1 form-control" disabled></div>
 			</div>
 		</nav>
 		<!-- body -->
@@ -53,6 +53,38 @@
 			</div>
 			<div class="d-flex flex-column pt-3 pb-3">
 				<div id="wifi_fixed_title" class="d-flex justify-content-center pt-3 pb-3 text-info"></div>
+				<table class="d-flex justify-content-center text-light mb-3" id="filter-table">
+					<tr>
+						<td class="fs-4 text-center p-3" width="60">Filter:</td>
+						<!-- <td class="fs-4 text-center p-3" width="60">Field:</td> -->
+						<td width="200">
+							<select id="filter-field" mbsc-input class="form-select d-inline p-3" multiple>
+								<option selected></option>
+								<!-- <option value="name">Name</option> -->
+								<!-- <option value="progress">Progress</option> -->
+								<!-- <option value="gender">Gender</option> -->
+								<!-- <option value="rating">Rating</option> -->
+								<!-- <option value="col">Favourite Colour</option> -->
+								<!-- <option value="dob">Date Of Birth</option> -->
+								<!-- <option value="car">Drives</option> -->
+								<!-- <option value="function">Drives & Rating < 3</option> -->
+							</select>
+						</td>
+						<td width="60">
+							<input id="filter-value" class="form-control p-3" type="text" value="in" disabled/>
+						</td>
+						<!-- <td class="fs-4 text-center p-3" width="60">Value:</td> -->
+						<td width="200">
+							<input id="filter-value" class="form-control p-3" type="text" />
+						</td>
+						<td>
+							<button type="button" class="btn btn-success p-3 m-3" id="filter-add">Add</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-danger p-3 m-3" id="filter-clear">Clear Filter</button>
+						</td>
+					</tr>
+				</table>
 				<div class="d-flex justify-content-center">
 					<div id="wifi_fixed_table" style="width: 90%"></div>
 				</div>
