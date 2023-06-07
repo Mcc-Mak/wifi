@@ -40,9 +40,7 @@ function initialize(table = null, category = "") {
       })
       .forEach((column_o) => {
         let column = column_o._column.definition;
-        $("#filter-field").append(
-          `<option value="${column.field}">${column.title}</option>`
-        );
+        $("#filter-field").append(`<option value="${column.field}">${column.title}</option>`);
       });
   }
 }
@@ -73,6 +71,7 @@ function refreshHeaderFilter(table = null, category = "") {
             .sort(),
           multiselect: true,
         };
+        column._column.definition.headerFilterPlaceholder = column._column.definition.field.endsWith("EN") ? "Select：" : "請選擇：";
       }
       return column._column.definition;
     });
@@ -108,6 +107,7 @@ $(document).ready(async function () {
   // __MAIN__
   ["fixed", "non_fixed"].forEach(async (category) => {
     // Table
+    let data = JSON.parse(await $.ajax(`${api.wifi[category]}`, {dataType: "text"}));
     let table = new Tabulator(`#wifi_${category}_table`, {
       ajaxURL: `${api.wifi[category]}`,
       ajaxResponse: function (url, params, response) {
@@ -264,10 +264,27 @@ $(document).ready(async function () {
           type: $("#filter-type").val(),
           value: $("#filter-value").val(),
         };
-        console.log(`data.field: ${data.field}`);
-        console.log(`data.type: ${data.type}`);
-        console.log(`data.value: ${data.value}`);
+        // console.log(`data.field: ${data.field}`);
+        // console.log(`data.type: ${data.type}`);
+        // console.log(`data.value: ${data.value}`);
         table.setFilter(data.field, data.type, data.value);
+      });
+      $('#map-show-all').on("click", function(){
+        table.alert("Loading...");
+
+        table.getData().forEach(e => {
+          let lat_lng = [
+            e.Latitude,
+            e.Longitude,
+          ];
+          let marker = L.marker(lat_lng);
+          marker.addTo(map);
+          markers.push(marker);
+        });
+        
+        // map.setView([22.3193, 114.1694], 12);
+
+        table.clearAlert();
       });
       table.on("cellClick", function (e, cell) {
         // Map
